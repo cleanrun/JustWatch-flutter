@@ -1,4 +1,4 @@
-# justwatch
+# JustWatch-Flutter
 
 A complete remake of JustWatch App using Flutter (previously written in SwiftUI)
 
