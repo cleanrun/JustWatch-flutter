@@ -1,0 +1,39 @@
+name: JustWatch
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.0
+  intl: ^0.17.0
+  http: ^0.13.3
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/placeholder_movie_backdrop.jpg
+    - assets/images/placeholder_movie_poster.png
+
+  fonts:
+    - family: ArialCE
+      fonts:
+        - asset: assets/fonts/ArialCE.ttf
+        - asset: assets/fonts/ArialCEBold.ttf
+          weight: 700
+        - asset: assets/fonts/ArialCEBoldItalic.ttf
+        - asset: assets/fonts/ArialCEItalic.ttf
+          style: italic
