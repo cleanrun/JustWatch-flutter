@@ -28,7 +28,7 @@ class PopularCollection extends StatelessWidget {
     final tvProvider = Provider.of<TVProvider>(context,
         listen: !(type == CollectionType.Movie));
     return Container(
-      height: 250,
+      height: 300,
       child: Stack(
         children: [
           Container(
@@ -42,7 +42,10 @@ class PopularCollection extends StatelessWidget {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(top: 40, bottom: 15),
+            margin: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top + 20,
+              bottom: 15,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

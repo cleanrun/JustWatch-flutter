@@ -55,7 +55,17 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   child: Column(
                     children: [
                       Container(
-                        height: 220,
+                        height: 240,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.3),
+                              spreadRadius: 2,
+                              blurRadius: 3,
+                              offset: Offset(0, 1),
+                            ),
+                          ],
+                        ),
                         child: FadeInImage.assetNetwork(
                           placeholder:
                               'assets/images/placeholder_movie_backdrop.jpg',
@@ -71,7 +81,7 @@ class _MovieDetailScreenState extends State<MovieDetailScreen> {
                   ),
                 ),
           Positioned(
-            top: 30,
+            top: MediaQuery.of(context).padding.top + 10,
             child: MaterialButton(
               color: Colors.white,
               textColor: Colors.black,

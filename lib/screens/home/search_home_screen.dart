@@ -25,54 +25,50 @@ class SearchHomeScreen extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: 120,
-            child: Stack(
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColor,
-                    borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(20),
-                      bottomRight: Radius.circular(20),
-                    ),
+            decoration: BoxDecoration(
+              color: Theme.of(context).primaryColor,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                24,
+                MediaQuery.of(context).padding.top + 10,
+                24,
+                24,
+              ),
+              child: Container(
+                height: 50,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25),
                   ),
                 ),
-                Center(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
-                    child: Container(
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(25),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.search,
+                        color: Colors.grey,
+                      ),
+                      SizedBox(width: 8),
+                      Expanded(
+                        child: TextFormField(
+                          decoration: InputDecoration.collapsed(
+                              hintText: 'Search here..'),
+                          onChanged: (query) {
+                            _onSearchChanged(provider, query);
+                          },
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 16),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.search,
-                              color: Colors.grey,
-                            ),
-                            SizedBox(width: 8),
-                            Expanded(
-                              child: TextFormField(
-                                decoration: InputDecoration.collapsed(
-                                    hintText: 'Search here..'),
-                                onChanged: (query) {
-                                  _onSearchChanged(provider, query);
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    ],
                   ),
-                )
-              ],
+                ),
+              ),
             ),
           ),
           SizedBox(height: 10),
@@ -104,8 +100,9 @@ class SearchHomeScreen extends StatelessWidget {
               ],
             ),
           ),
+          SizedBox(height: 5),
           Expanded(
-            child: createList(provider),
+            child: createList(context, provider),
           )
         ],
       ),
@@ -158,7 +155,7 @@ class SearchHomeScreen extends StatelessWidget {
     );
   }
 
-  Widget createList(SearchProvider provider) {
+  Widget createList(BuildContext context, SearchProvider provider) {
     if (provider.isLoadingData) {
       return Center(
         child: CircularProgressIndicator(),
@@ -168,33 +165,66 @@ class SearchHomeScreen extends StatelessWidget {
         if (provider.movieResults.isEmpty) {
           return createNoDataInfo();
         } else {
-          return createListContent(provider, CollectionType.Movie);
+          return createListContent(context, provider, CollectionType.Movie);
         }
       } else {
         if (provider.movieResults.isEmpty) {
           return createNoDataInfo();
         } else {
-          return createListContent(provider, CollectionType.TV);
+          return createListContent(context, provider, CollectionType.TV);
         }
       }
     }
   }
 
-  Widget createListContent(SearchProvider provider, CollectionType type) {
+  Widget createListContent(
+      BuildContext context, SearchProvider provider, CollectionType type) {
     return Container(
-      child: ListView.builder(
-        itemCount: (type == CollectionType.Movie)
-            ? provider.movieResults.length
-            : provider.tvResults.length,
-        itemBuilder: (_, index) => (type == CollectionType.Movie)
-            ? SearchResultItem(
-                type: CollectionType.Movie,
-                movie: provider.movieResults.toList()[index],
-              )
-            : SearchResultItem(
-                type: CollectionType.TV,
-                tv: provider.tvResults.toList()[index],
-              ),
+      child: MediaQuery.removePadding(
+        context: context,
+        removeTop: true,
+        child: ListView.builder(
+          itemCount: (type == CollectionType.Movie)
+              ? provider.movieResults.length
+              : provider.tvResults.length,
+          itemBuilder: (_, index) {
+            if (type == CollectionType.Movie) {
+              if ((index + 1) != provider.movieResults.length) {
+                return SearchResultItem(
+                  type: CollectionType.Movie,
+                  movie: provider.movieResults.toList()[index],
+                );
+              } else {
+                return Column(
+                  children: [
+                    SearchResultItem(
+                      type: CollectionType.Movie,
+                      movie: provider.movieResults.toList()[index],
+                    ),
+                    SizedBox(height: 100),
+                  ],
+                );
+              }
+            } else {
+              if ((index + 1) != provider.tvResults.length) {
+                return SearchResultItem(
+                  type: CollectionType.TV,
+                  tv: provider.tvResults.toList()[index],
+                );
+              } else {
+                return Column(
+                  children: [
+                    SearchResultItem(
+                      type: CollectionType.TV,
+                      tv: provider.tvResults.toList()[index],
+                    ),
+                    SizedBox(height: 100),
+                  ],
+                );
+              }
+            }
+          },
+        ),
       ),
     );
   }

@@ -68,7 +68,7 @@ class _TVSeriesHomeScreenState extends State<TVSeriesHomeScreen> {
               type: TVSeriesCollectionType.TopRated,
               isLoading: _isLoadingTopRated,
             ),
-            SizedBox(height: 100)
+            SizedBox(height: MediaQuery.of(context).padding.bottom + 100)
           ],
         ),
       ),

@@ -67,7 +67,7 @@ class _MoviesHomeScreenState extends State<MoviesHomeScreen> {
               isLoading: _isLoadingUpcomingMovies,
               type: MoviesCollectionType.Upcoming,
             ),
-            SizedBox(height: 100)
+            SizedBox(height: MediaQuery.of(context).padding.bottom + 100)
           ],
         ),
       ),

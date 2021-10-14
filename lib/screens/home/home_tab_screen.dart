@@ -33,10 +33,10 @@ class _HomeTabScreenState extends State<HomeTabScreen> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                margin: const EdgeInsets.only(
+                margin: EdgeInsets.only(
                   left: 50,
                   right: 50,
-                  bottom: 24,
+                  bottom: MediaQuery.of(context).padding.bottom + 20,
                 ),
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(

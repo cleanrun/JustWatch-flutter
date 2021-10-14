@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'screens/home/home_tab_screen.dart';
 import 'screens/movie/movie_detail_screen.dart';
 import 'screens/tvseries/tv_detail_screen.dart';
+import 'screens/genre/all_genre_screen.dart';
 
 import 'providers/movies_provider.dart';
 import 'providers/tv_provider.dart';
@@ -51,6 +52,7 @@ class JWApp extends StatelessWidget {
           '/': (_) => HomeTabScreen(),
           MovieDetailScreen.ROUTE_NAME: (_) => MovieDetailScreen(),
           TVDetailScreen.ROUTE_NAME: (_) => TVDetailScreen(),
+          AllGenreScreen.ROUTE_NAME: (_) => AllGenreScreen(),
         },
       ),
     );

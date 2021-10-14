@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 
 import 'popular_collection.dart';
 
+import '/screens/genre/all_genre_screen.dart';
+
 import '/utils/configuration.dart';
 
 class GenresCollection extends StatelessWidget {
@@ -58,7 +60,8 @@ class GenresCollection extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    print("See All");
+                    Navigator.of(context)
+                        .pushNamed(AllGenreScreen.ROUTE_NAME, arguments: type);
                   },
                 ),
               ],
