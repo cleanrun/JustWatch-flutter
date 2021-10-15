@@ -29,7 +29,8 @@ class Season {
 
   Season.fromJSON(dynamic data) {
     this.id = data['id'];
-    this.airDate = data['air_date'];
+    this.airDate =
+        (data['air_date'] != null) ? data['air_date'].toString() : '';
     this.name = data['name'];
     this.overview =
         (data['overview'] != null) ? data['overview'].toString() : '';

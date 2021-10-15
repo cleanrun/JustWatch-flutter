@@ -93,44 +93,47 @@ class GenresCollection extends StatelessWidget {
   }
 
   Widget createGenreItem(BuildContext context, String title) {
-    return Expanded(
-      child: Container(
-        child: Center(
-          child: Column(
-            children: [
-              Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  color: (type == CollectionType.Movie)
-                      ? Theme.of(context).primaryColorLight
-                      : Theme.of(context).accentColor,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Center(
-                  child: Icon(
-                    Icons.question_answer_outlined,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              SizedBox(height: 8),
-              FittedBox(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontFamily: 'ArialCE',
-                    //fontWeight: FontWeight.w700,
+    return GestureDetector(
+      child: Expanded(
+        child: Container(
+          child: Center(
+            child: Column(
+              children: [
+                Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
                     color: (type == CollectionType.Movie)
-                        ? Theme.of(context).primaryColor
-                        : Theme.of(context).primaryColorDark,
+                        ? Theme.of(context).primaryColorLight
+                        : Theme.of(context).accentColor,
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                    child: Icon(
+                      Icons.question_answer_outlined,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-            ],
+                SizedBox(height: 8),
+                FittedBox(
+                  child: Text(
+                    title,
+                    style: TextStyle(
+                      fontFamily: 'ArialCE',
+                      //fontWeight: FontWeight.w700,
+                      color: (type == CollectionType.Movie)
+                          ? Theme.of(context).primaryColor
+                          : Theme.of(context).primaryColorDark,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
+      onTap: () {},
     );
   }
 }
