@@ -8,7 +8,7 @@
 class Configuration {
   static const URL_BASE = 'api.themoviedb.org';
   static const URL_IMG_BASE = 'https://image.tmdb.org/t/p/w500';
-  static const API_KEY = 'e9325a84053f572e130d8028237ab315';
+  static const API_KEY = 'configure this with an API key';
 
   static const MOVIE_GENRE_ACTION = '28';
   static const MOVIE_GENRE_ADVENTURE = '12';
